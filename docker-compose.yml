@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  osjs:
+    image: osjs/osjs:latest
+    container_name: osjs
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    volumes:
+    # Uncomment and adjust if you want persistent data
+      - ./data:/var/lib/osjs
+ 
