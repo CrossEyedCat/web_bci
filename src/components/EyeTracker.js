@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import webgazer from "webgazer";
+import { Button } from 'antd';
 const EyeTracker = () => {
     const canvasRef = useRef(null);
     const [currentlyTracking, setCurrentlyTracking] = useState(true);
@@ -7,18 +8,19 @@ const EyeTracker = () => {
     const [calibrationPoints, setCalibrationPoints] = useState({});
 
     useEffect(() => {
+        window.webgazer = webgazer;
         const initializeWebGazer = async () => {
             await webgazer
                 .setRegression("ridge")
                 .setGazeListener((data, clock) => {
-                    // console.log(data);
-                    // console.log(clock);
+                    console.log(data);
+                    console.log(clock);
                 })
                 .saveDataAcrossSessions(false)
                 .begin();
 
             webgazer
-                .showVideoPreview(false)
+                .showVideoPreview(true)
                 .showPredictionPoints(true)
                 .applyKalmanFilter(true);
 
@@ -184,7 +186,7 @@ const EyeTracker = () => {
     return (
         <div>
             <canvas id="plotting_canvas" ref={canvasRef}></canvas>
-            {currentlyTracking && !calibrating && <button
+            {currentlyTracking && !calibrating && <Button
                 onClick={restart}
                 className="
           fixed
@@ -198,13 +200,14 @@ const EyeTracker = () => {
           rounded-full
           transition
           z-[100]
+          calibBotton
         "
             >
                 Calibrate
-            </button>}
+            </Button>}
             {!calibrating && <>
                 {currentlyTracking === false ?
-                    <button
+                    <Button
                         onClick={() => {
                             webgazer.begin()
                             webgazer.showVideo(true)
@@ -223,11 +226,12 @@ const EyeTracker = () => {
               rounded-full
               transition
               z-[100]
+              startBotton
             "
                     >
                         Start tracking
-                    </button> :
-                    <button
+                    </Button> :
+                    <Button
                         onClick={() => {
                             webgazer.end()
                             webgazer.stopVideo()
@@ -249,7 +253,7 @@ const EyeTracker = () => {
             "
                     >
                         Stop tracking
-                    </button>
+                    </Button>
                 }
             </>}
             <div className="calibrationDiv">

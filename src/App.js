@@ -9,6 +9,9 @@ import {
 import 'antd/dist/reset.css';
 import './App.css';
 import EyeTracker from "./components/EyeTracker";
+import EEGSetup from "./components/EEGSetup";
+import Demo from "./components/Demo";
+import Description from "./components/Description";
 
 const { Step } = Steps;
 
@@ -52,14 +55,14 @@ export default function App() {
 
         <div className="mt-8">
           <div className="steps-content">
-            {current === 0 && <p>Здесь будет описание проекта.</p>}
-            {current === 1 && <EyeTracker/>}  {/* Встраиваем компонент калибровки */}
-            {current === 2 && <p>Конфигурация и настройка ЭЭГ оборудования.</p>}
-            {current === 3 && <p>Демонстрационная версия приложения.</p>}
+            {current === 0 && <Description />}
+            {current === 1 && <EyeTracker/>}
+            {current === 2 && <EEGSetup/>}
+            {current === 3 && <Demo/>}
           </div>
           <div className="steps-action mt-4">
             <Button
-                style={{ margin: '0 8px' }}
+                style={{ margin: '0 8px'}}
                 disabled={current === 0}
                 onClick={prev}
             >

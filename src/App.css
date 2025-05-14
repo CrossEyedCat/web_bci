@@ -83,3 +83,21 @@ li {
     bottom:2vw;
     right:2vw;
 }
+#webgazerVideoContainer{
+    top: 75vh !important;
+
+}
+.steps-action{
+    position: absolute;
+    bottom: 0;
+}
+.calibBotton{
+    z-index: 9999;
+}
+.demo-container { position: relative; width: 100%; height: 100%; }
+.osjs-frame { width: 100%; height: 600px; border: none; }
+.eye-tracker-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+.hand-indicator { position: absolute; bottom: 20px; right: 20px; font-size: 2rem; }
+.hand-icon { opacity: 0.8; }
+.left-hand { color: #f5222d; }
+.right-hand { color: #1890ff; }
